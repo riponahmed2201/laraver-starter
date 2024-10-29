@@ -12,11 +12,14 @@
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
     <meta name="msapplication-tap-highlight" content="no">
 
-    <link rel="stylesheet" href="assets/backend/css/font-awesome.css"
+    {{-- <link href="{{ asset('assets/backend/css/font-awesome.css') }}" rel="stylesheet" /> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link href="{{ asset('assets/backend/css/main.css') }}" rel="stylesheet">
 
+    @stack('css')
 </head>
 
 <body>
@@ -40,7 +43,11 @@
             <script src="https://maps.google.com/maps/api/js?sensor=true"></script>
         </div>
     </div>
+
     <script type="text/javascript" src="{{ asset('assets/backend/scripts/main.js') }}"></script>
+
+    @stack('js')
+
 </body>
 
 </html>

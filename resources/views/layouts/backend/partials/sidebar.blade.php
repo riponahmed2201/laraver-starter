@@ -34,18 +34,16 @@
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">Dashboards</li>
                 <li>
-                    <a href="index.html" class="mm-active">
-                        <i class="metismenu-icon fa fa-cog"></i>
-                        Dashboard Example 1
+                    <a href="/app/dashboard" class="{{ Route::is('app.dashboard') ? 'mm-active' : '' }}">
+                        <i class="fas fa-list"></i>
+                        Dashboard
                     </a>
                 </li>
 
-                <li class="app-sidebar__heading">PRO Version</li>
                 <li>
-                    <a href="https://dashboardpack.com/theme-details/architectui-dashboard-html-pro/" target="_blank">
-                        <i class="metismenu-icon pe-7s-graph2">
-                        </i>
-                        Upgrade to PRO
+                    <a href="{{ route('app.roles.index') }}" class="{{ Request::is('app/roles') ? 'mm-active' : '' }}">
+                        <i class="fas fa-list"></i>
+                        Roles
                     </a>
                 </li>
             </ul>
