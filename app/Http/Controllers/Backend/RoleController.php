@@ -44,7 +44,9 @@ class RoleController extends Controller
         Role::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
-        ])->permissions();
+        ])->permissions()->sync($request->input('permissions'), []);
+
+        return back()->with('success', 'Role created successfully!');
     }
 
     /**
@@ -60,7 +62,11 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return $role;
+
+        $modules = Module::all();
+
+        return view('backend.roles.form', compact('modules'));
     }
 
     /**
