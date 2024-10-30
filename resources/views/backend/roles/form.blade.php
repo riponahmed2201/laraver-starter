@@ -7,12 +7,12 @@
                 <div class="page-title-icon">
                     <i class="pe-7s-check icon-gradient bg-mean-fruit"></i>
                 </div>
-                <div>Roles</div>
+                <div>Role / {{ isset($role) ? 'Edit' : 'Create' }} Role</div>
             </div>
             <div class="page-title-actions">
                 <a href="{{ route('app.roles.index') }}" data-toggle="tooltip" title="Role List" data-placement="bottom"
                     class="btn-shadow mr-3 btn btn-primary">
-                    <i class="fas fa-list"></i>
+                    <i class="fas fa-arrow-circle-left"></i>
                     Role List
                 </a>
             </div>
@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="main-card mb-3 card">
-                <div class="card-header">Roles Create</div>
+                <div class="card-header">{{ isset($role) ? 'Edit' : 'Create' }} Role</div>
                 <form method="POST"
                     action="{{ isset($role) ? route('app.roles.update', $role->id) : route('app.roles.store') }}">
 
@@ -90,7 +90,16 @@
                         @endforelse
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">
+                            @isset($role)
+                                <i class="fas fa-arrow-circle-up"></i>
+                                Update
+                            @else
+                                <i class="fas fa-plus-circle"></i>
+                                Create
+                            @endisset
+
+                        </button>
                     </div>
                 </form>
 
