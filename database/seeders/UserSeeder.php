@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
             'role_id' => Role::where('slug', 'admin')->first()->id,
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
+            'status' => true,
             'password' => Hash::make('password')
         ]);
 
@@ -26,6 +27,7 @@ class UserSeeder extends Seeder
             'role_id' => Role::where('slug', 'user')->first()->id,
             'name' => 'User',
             'email' => 'user@gmail.com',
+            'status' => true,
             'password' => Hash::make('password')
         ]);
     }

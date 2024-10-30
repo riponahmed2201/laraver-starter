@@ -1,5 +1,7 @@
 @extends('layouts.backend.app')
 
+@section('title', 'Roles List')
+
 @push('css')
     <!-- Datatables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap4.css">
@@ -10,7 +12,7 @@
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="pe-7s-check icon-gradient bg-mean-fruit"></i>
+                    <i class="fas fa-check icon-gradient bg-mean-fruit"></i>
                 </div>
                 <div>Roles</div>
             </div>
@@ -67,7 +69,6 @@
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
-
                                             @endif
                                         </td>
                                     </tr>

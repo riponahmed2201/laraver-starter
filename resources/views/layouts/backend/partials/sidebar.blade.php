@@ -42,8 +42,14 @@
 
                 <li>
                     <a href="{{ route('app.roles.index') }}" class="{{ Request::is('app/roles') ? 'mm-active' : '' }}">
-                        <i class="fas fa-list"></i>
+                        <i class="fas fa-check"></i>
                         Roles
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('app.users.index') }}" class="{{ Request::is('app/users') ? 'mm-active' : '' }}">
+                        <i class="fas fa-users"></i>
+                        Users
                     </a>
                 </li>
             </ul>
