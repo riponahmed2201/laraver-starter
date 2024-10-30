@@ -62,11 +62,9 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return $role;
-
         $modules = Module::all();
 
-        return view('backend.roles.form', compact('modules'));
+        return view('backend.roles.form', compact('modules', 'role'));
     }
 
     /**
@@ -74,7 +72,13 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $role->update([
+            'name' => $request->name,
+        ]);
+
+        $role->permissions()->sync($request->input('permissions'), []);
+
+        return to_route('app.roles.index')->with('success', 'Role updated successfully!');
     }
 
     /**

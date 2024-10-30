@@ -27,6 +27,11 @@
                     action="{{ isset($role) ? route('app.roles.update', $role->id) : route('app.roles.store') }}">
 
                     @csrf
+
+                    @isset($role)
+                        @method('PUT')
+                    @endisset
+
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Role Name</label>
@@ -61,8 +66,13 @@
                                             <div class="mb-3 ml-4">
                                                 <div class="custom-control custom-checkbox mb-2">
                                                     <input type="checkbox" name="permissions[]"
-                                                        value="{{ $permission->id }}" id="permission-{{ $permission->id }}"
-                                                        class="custom-control-input">
+                                                        id="permission-{{ $permission->id }}" class="custom-control-input"
+                                                        value="{{ $permission->id }}"
+                                                        @isset($role)
+                                                            @foreach ($role->permissions as $role_permission)
+                                                                {{ $permission->id == $role_permission->id ? 'checked' : '' }}
+                                                            @endforeach
+                                                        @endisset>
                                                     <label for="permission-{{ $permission->id }}"
                                                         class="custom-control-label">{{ $permission->name }}</label>
                                                 </div>
