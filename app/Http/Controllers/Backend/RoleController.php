@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Module;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
 class RoleController extends Controller
@@ -15,6 +16,8 @@ class RoleController extends Controller
      */
     public function index()
     {
+        Gate::authorize('app.roles.index');
+
         $roles = Role::all();
         return view('backend.roles.index', compact('roles'));
     }
@@ -24,6 +27,8 @@ class RoleController extends Controller
      */
     public function create()
     {
+        Gate::authorize('app.roles.create');
+
         $modules = Module::all();
         return view('backend.roles.form', compact('modules'));
     }
@@ -33,6 +38,8 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('app.roles.create');
+
         $request->validate([
             'name' => 'required|unique:roles',
             'permissions' => 'required|array',
@@ -62,6 +69,8 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+        Gate::authorize('app.roles.edit');
+
         $modules = Module::all();
 
         return view('backend.roles.form', compact('modules', 'role'));
@@ -72,11 +81,14 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
+        Gate::authorize('app.roles.edit');
+
         $role->update([
             'name' => $request->name,
+            'slug' => Str::slug($request->name)
         ]);
 
-        $role->permissions()->sync($request->input('permissions'), []);
+        $role->permissions()->sync($request->input('permissions'));
 
         notify()->success("Role updated successfull.", "Success");
 
@@ -88,6 +100,8 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        Gate::authorize('app.roles.destroy');
+
         if ($role->deletable) {
             $role->delete();
             notify()->success("Role deleted successfull.", "Success");
