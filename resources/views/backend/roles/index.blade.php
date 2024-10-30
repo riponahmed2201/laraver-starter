@@ -15,10 +15,10 @@
                 <div>Roles</div>
             </div>
             <div class="page-title-actions">
-                <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
-                    class="btn-shadow mr-3 btn btn-dark">
-                    <i class="fa fa-star"></i>
-                </button>
+                <a href="{{ route('app.roles.create') }}" data-toggle="tooltip" title="Create Role"
+                    data-placement="bottom" class="btn-shadow mr-3 btn btn-primary">
+                    <i class="fas fa-plus-circle"></i> Create Role
+                </a>
             </div>
         </div>
     </div>
@@ -27,40 +27,42 @@
         <div class="col-md-12">
             <div class="main-card mb-3 card">
                 <div class="card-header">Roles List</div>
-                <div class="table-responsive">
-                    <table id="data-table" class="align-middle mb-0 table table-borderless table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th class="text-center">#</th>
-                                <th>Name</th>
-                                <th class="text-center">Permissions</th>
-                                <th class="text-center">Updated At</th>
-                                <th class="text-center">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($roles as $role)
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="data-table" class="align-middle mb-0 table table-borderless table-striped table-hover">
+                            <thead>
                                 <tr>
-                                    <td class="text-center text-muted">#{{ $loop->iteration }}</td>
-                                    <td class="text-center">{{ $role->name }}</td>
-                                    <td class="text-center">
-                                        @if ($role->permissions->count() > 0)
-                                            <span class="badge badge-info">{{ $role->permissions->count() }}</span>
-                                        @else
-                                            <span class="badge badge-danger">No permission found :( </span>
-                                        @endif
-                                    </td>
-                                    <td class="text-center">{{ $role->updated_at->diffForHumans() }}</td>
-                                    <td class="text-center">
-                                        <a href="{{ route('app.roles.edit', $role->id) }}" class="btn btn-info btn-sm"> <i
-                                                class="fas fa-edit"></i> <span>Edit</span> </a>
-                                        <a href="{{ route('app.roles.destroy', $role->id) }}" class="btn btn-danger btn-sm">
-                                            <i class="fas fa-trash"></i> <span>Delete</span> </a>
-                                    </td>
+                                    <th class="text-center">#</th>
+                                    <th>Name</th>
+                                    <th class="text-center">Permissions</th>
+                                    <th class="text-center">Updated At</th>
+                                    <th class="text-center">Actions</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($roles as $role)
+                                    <tr>
+                                        <td class="text-center text-muted">#{{ $loop->iteration }}</td>
+                                        <td class="text-center">{{ $role->name }}</td>
+                                        <td class="text-center">
+                                            @if ($role->permissions->count() > 0)
+                                                <span class="badge badge-info">{{ $role->permissions->count() }}</span>
+                                            @else
+                                                <span class="badge badge-danger">No permission found :( </span>
+                                            @endif
+                                        </td>
+                                        <td class="text-center">{{ $role->updated_at->diffForHumans() }}</td>
+                                        <td class="text-center">
+                                            <a href="{{ route('app.roles.edit', $role->id) }}" class="btn btn-info btn-sm"> <i
+                                                    class="fas fa-edit"></i> <span>Edit</span> </a>
+                                            <a href="{{ route('app.roles.destroy', $role->id) }}" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i> <span>Delete</span> </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

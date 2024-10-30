@@ -44,8 +44,6 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="{{ asset('assets/backend/scripts/main.js') }}"></script>
-
     @stack('js')
 
 </body>
