@@ -18,6 +18,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link href="{{ asset('assets/backend/css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/iziToast.css') }}" rel="stylesheet">
 
     @stack('css')
 </head>
@@ -44,11 +45,13 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script src="{{ asset('js/iziToast.js') }}"></script>
     <script src="{{ asset('assets/backend/scripts/main.js') }}"></script>
     <script src="{{ asset('assets/backend/scripts/common.js') }}"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @include('vendor.lara-izitoast.toast')
 
     @stack('js')
 

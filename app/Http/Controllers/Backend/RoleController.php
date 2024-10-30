@@ -16,7 +16,6 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-
         return view('backend.roles.index', compact('roles'));
     }
 
@@ -26,7 +25,6 @@ class RoleController extends Controller
     public function create()
     {
         $modules = Module::all();
-
         return view('backend.roles.form', compact('modules'));
     }
 
@@ -46,7 +44,9 @@ class RoleController extends Controller
             'slug' => Str::slug($request->name),
         ])->permissions()->sync($request->input('permissions'), []);
 
-        return back()->with('success', 'Role created successfully!');
+        notify()->success("Role created successfull.", "Success");
+
+        return to_route('app.roles.index');
     }
 
     /**
@@ -78,7 +78,9 @@ class RoleController extends Controller
 
         $role->permissions()->sync($request->input('permissions'), []);
 
-        return to_route('app.roles.index')->with('success', 'Role updated successfully!');
+        notify()->success("Role updated successfull.", "Success");
+
+        return to_route('app.roles.index');
     }
 
     /**
@@ -88,10 +90,11 @@ class RoleController extends Controller
     {
         if ($role->deletable) {
             $role->delete();
+            notify()->success("Role deleted successfull.", "Success");
         } else {
-            return back()->with('error', 'Role does not deleted.');
+            notify()->error("You can\'t delete system role", "Error");
         }
 
-        return back()->with('success', 'Role deleted successful.');
+        return back();
     }
 }
