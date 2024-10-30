@@ -15,8 +15,8 @@
                 <div>Roles</div>
             </div>
             <div class="page-title-actions">
-                <a href="{{ route('app.roles.create') }}" data-toggle="tooltip" title="Create Role"
-                    data-placement="bottom" class="btn-shadow mr-3 btn btn-primary">
+                <a href="{{ route('app.roles.create') }}" data-toggle="tooltip" title="Create Role" data-placement="bottom"
+                    class="btn-shadow mr-3 btn btn-primary">
                     <i class="fas fa-plus-circle"></i> Create Role
                 </a>
             </div>
@@ -53,10 +53,21 @@
                                         </td>
                                         <td class="text-center">{{ $role->updated_at->diffForHumans() }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('app.roles.edit', $role->id) }}" class="btn btn-info btn-sm"> <i
-                                                    class="fas fa-edit"></i> <span>Edit</span> </a>
-                                            <a href="{{ route('app.roles.destroy', $role->id) }}" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i> <span>Delete</span> </a>
+                                            <a href="{{ route('app.roles.edit', $role->id) }}" class="btn btn-info btn-sm">
+                                                <i class="fas fa-edit"></i> <span>Edit</span> </a>
+
+                                            @if ($role->deletable)
+                                                <button type="button" class="btn btn-danger btn-sm"
+                                                    onclick="deleteData({{ $role->id }})">
+                                                    <i class="fas fa-trash"></i> <span>Delete</span> </button>
+
+                                                <form id="delete-form-{{ $role->id }}" method="POST"
+                                                    action="{{ route('app.roles.destroy', $role->id) }}"
+                                                    style="display: none">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
@@ -70,7 +81,6 @@
 @endsection
 
 @push('js')
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap4.js"></script>
 

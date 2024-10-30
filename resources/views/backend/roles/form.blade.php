@@ -109,7 +109,6 @@
 @endsection
 
 @push('js')
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
         //Listen for click on toggle checkbox
         $('#select-all').click(function(event) {
