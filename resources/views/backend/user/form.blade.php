@@ -2,18 +2,26 @@
 
 @section('title', 'User Create')
 
+@push('css')
+    <style>
+        .dropify-wrapper .dropify-message p {
+            font-size: initial;
+        }
+    </style>
+@endpush
+
 @section('content')
     <div class="app-page-title">
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="pe-7s-check icon-gradient bg-mean-fruit"></i>
+                    <i class="fas fa-user icon-gradient bg-mean-fruit"></i>
                 </div>
-                <div>User / {{ isset($role) ? 'Edit' : 'Create' }} User</div>
+                <div>User / {{ isset($user) ? 'Edit' : 'Create' }}</div>
             </div>
             <div class="page-title-actions">
                 <a href="{{ route('app.users.index') }}" data-toggle="tooltip" title="User List"
-                    class="btn-shadow mr-3 btn btn-primary">
+                    class="btn-shadow mr-3 btn btn-danger">
                     <i class="fas fa-arrow-circle-left"></i>
                     User List
                 </a>
@@ -22,108 +30,140 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">
-            <div class="main-card mb-3 card">
-                <div class="card-header">{{ isset($role) ? 'Edit' : 'Create' }} User</div>
-                <form method="POST"
-                    action="{{ isset($role) ? route('app.users.update', $role->id) : route('app.users.store') }}">
+        <div class="col-12">
+            <form method="POST" enctype="multipart/form-data"
+                action="{{ isset($user) ? route('app.users.update', $user->id) : route('app.users.store') }}">
 
-                    @csrf
+                @csrf
 
-                    @isset($role)
-                        @method('PUT')
-                    @endisset
+                @isset($user)
+                    @method('PUT')
+                @endisset
 
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="name">User Name</label>
-                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                                value="{{ $role->name ?? old('name') }}">
-                            @error('name')
-                                <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-6">
-                            <h4><strong>Manage permissions for role</strong></h4>
-                            @error('permissions')
-                                <span class="text-danger" role="alert"> <strong>{{ $message }}</strong> </span>
-                            @enderror
-                        </div>
-                        <br>
-
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" id="select-all" class="custom-control-input">
-                                <label for="select-all" class="custom-control-label">Select All</label>
-                            </div>
-                        </div>
-
-                        @forelse ($modules->chunk(2) as $key => $chunks)
-                            <div class="form-row">
-                                @foreach ($chunks as $key => $module)
-                                    <div class="col">
-                                        <h5>Module: {{ $module->name }}</h5>
-                                        @foreach ($module->permissions as $key => $permission)
-                                            <div class="mb-3 ml-4">
-                                                <div class="custom-control custom-checkbox mb-2">
-                                                    <input type="checkbox" name="permissions[]"
-                                                        id="permission-{{ $permission->id }}" class="custom-control-input"
-                                                        value="{{ $permission->id }}"
-                                                        @isset($role)
-                                                            @foreach ($role->permissions as $role_permission)
-                                                                {{ $permission->id == $role_permission->id ? 'checked' : '' }}
-                                                            @endforeach
-                                                        @endisset>
-                                                    <label for="permission-{{ $permission->id }}"
-                                                        class="custom-control-label">{{ $permission->name }}</label>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                @endforeach
-                            </div>
-                        @empty
-                            <div class="row">
-                                <div class="col text-center">
-                                    <strong>No module found.</strong>
+                <div class="row">
+                    <div class="col-md 8">
+                        <div class="main-card mb-3 card">
+                            <div class="card-body">
+                                <div class="card-title">User Info</div>
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" id="name" name="name" required
+                                        class="form-control @error('name') is-invalid @enderror"
+                                        value="{{ $user->name ?? old('name') }}">
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
+
+
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" required
+                                        class="form-control @error('email') is-invalid @enderror"
+                                        value="{{ $user->email ?? old('email') }}">
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" name="password" required
+                                        class="form-control @error('password') is-invalid @enderror">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="confirm_password">Confirm Password</label>
+                                    <input type="password" id="confirm_password" name="password_confirmation" required
+                                        class="form-control @error('password') is-invalid @enderror">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
                             </div>
-                        @endforelse
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">
-                            @isset($role)
-                                <i class="fas fa-arrow-circle-up"></i>
-                                Update
-                            @else
-                                <i class="fas fa-plus-circle"></i>
-                                Create
-                            @endisset
+                    <div class="col-md 4">
+                        <div class="main-card mb-3 card">
+                            <div class="card-body">
+                                <div class="card-title">Select Role and Status Info</div>
+                                <div class="form-group">
+                                    <label for="role">Select Role</label>
+                                    <select name="role" id="role" class="form-control select2">
+                                        <option value="">----Select Role Name----</option>
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('role')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="avatar">Avatar</label>
+                                    <input type="file" id="avatar" name="avatar" required
+                                        class="form-control dropify @error('avatar') is-invalid @enderror">
+                                    @error('avatar')
+                                        <span class="text-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="status" name="status">
+                                        <label for="status" class="custom-control-label">Status</label>
+                                    </div>
+                                    @error('status')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
 
-                        </button>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">
+                                    @isset($user)
+                                        <i class="fas fa-arrow-circle-up"></i>
+                                        Update
+                                    @else
+                                        <i class="fas fa-plus-circle"></i>
+                                        Create
+                                    @endisset
+
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </form>
+                </div>
 
-            </div>
+            </form>
         </div>
     </div>
 @endsection
 
 @push('js')
     <script>
-        //Listen for click on toggle checkbox
-        $('#select-all').click(function(event) {
-            if (this.checked) {
-                //Iterate each checkbox
-                $(':checkbox').each(function() {
-                    this.checked = true;
-                });
-            } else {
-                $(':checkbox').each(function() {
-                    this.checked = false;
-                });
-            }
+        // In your Javascript (external .js resource or <script> tag)
+        $(document).ready(function() {
+            $('.select2').select2();
+
+            $('.dropify').dropify();
         });
     </script>
 @endpush

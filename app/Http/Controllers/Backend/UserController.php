@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -37,16 +38,37 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Gate::authorize('app.users.create');
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'role' => 'required',
+            'password' => 'required|confirmed|string|min:8',
+            'avatar' => 'required|image'
+        ]);
+
+        $user = User::create([
+            'role_id' => $request->role,
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'status' => $request->filled('status')
+        ]);
+
+        if ($request->hasFile('avatar')) {
+            $user->addMedia($request->avatar)->toMediaCollection('avatar');
+        }
+
+        notify()->success('User created successfull.', 'Success');
+
+        return to_route('app.users.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
-    {
-        //
-    }
+    public function show(User $user) {}
 
     /**
      * Show the form for editing the specified resource.

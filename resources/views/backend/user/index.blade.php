@@ -49,10 +49,10 @@
                                         <td>
                                             <div class="widget-content p-0">
                                                 <div class="widget-content-wrapper">
-                                                    <div class="widget-content-left mr3">
+                                                    <div class="widget-content-left mr-3">
                                                         <div class="widget-content-left">
                                                             <img width="40" class="rounded-circle"
-                                                                src="{{ config('app.placeholder') . '160.png' }}"
+                                                                src="{{ $user->getFirstMediaUrl('avatar') != null ? $user->getFirstMediaUrl('avatar')  : config('app.placeholder') . '160.png' }}"
                                                                 alt="User Avatar">
                                                         </div>
                                                     </div>
