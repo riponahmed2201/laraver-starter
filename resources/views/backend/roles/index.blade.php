@@ -14,7 +14,7 @@
                 <div class="page-title-icon">
                     <i class="fas fa-check icon-gradient bg-mean-fruit"></i>
                 </div>
-                <div>Roles</div>
+                <div>Roles List</div>
             </div>
             <div class="page-title-actions">
                 <a href="{{ route('app.roles.create') }}" data-toggle="tooltip" title="Create Role" data-placement="bottom"
@@ -28,7 +28,6 @@
     <div class="row">
         <div class="col-md-12">
             <div class="main-card mb-3 card">
-                <div class="card-header">Roles List</div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table id="data-table" class="align-middle mb-0 table table-borderless table-striped table-hover">

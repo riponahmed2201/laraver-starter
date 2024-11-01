@@ -14,7 +14,7 @@
                 <div class="page-title-icon">
                     <i class="fas fa-users icon-gradient bg-mean-fruit"></i>
                 </div>
-                <div>Users</div>
+                <div>Users List</div>
             </div>
             <div class="page-title-actions">
                 <a href="{{ route('app.users.create') }}" data-toggle="tooltip" title="Create user" data-placement="bottom"
@@ -28,7 +28,6 @@
     <div class="row">
         <div class="col-md-12">
             <div class="main-card mb-3 card">
-                <div class="card-header">Users List</div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table id="data-table" class="align-middle mb-0 table table-borderless table-striped table-hover">
@@ -80,6 +79,9 @@
                                         </td>
                                         <td class="text-center">{{ $user->created_at->diffForHumans() }}</td>
                                         <td class="text-center">
+                                            <a href="{{ route('app.users.show', $user->id) }}" class="btn btn-info btn-sm">
+                                                <i class="fas fa-eye"></i> <span>Show</span> </a>
+
                                             <a href="{{ route('app.users.edit', $user->id) }}" class="btn btn-info btn-sm">
                                                 <i class="fas fa-edit"></i> <span>Edit</span> </a>
 
