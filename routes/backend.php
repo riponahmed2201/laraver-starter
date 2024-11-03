@@ -15,3 +15,4 @@ Route::resource('users', UserController::class);
 
 //Backups
 Route::resource('backups', BackupController::class)->only(['index', 'store', 'destroy']);
+Route::get('backups/{file_name}', [BackupController::class, 'download'])->name('backups.download');
