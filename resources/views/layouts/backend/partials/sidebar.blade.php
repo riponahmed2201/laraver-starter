@@ -35,7 +35,7 @@
                 <li class="app-sidebar__heading">Dashboards</li>
                 <li>
                     <a href="/app/dashboard" class="{{ Route::is('app.dashboard') ? 'mm-active' : '' }}">
-                        <i class="fas fa-list"></i>
+                        <i class="fas fa-dashboard"></i>
                         Dashboard
                     </a>
                 </li>
@@ -50,6 +50,12 @@
                     <a href="{{ route('app.users.index') }}" class="{{ Request::is('app/users') ? 'mm-active' : '' }}">
                         <i class="fas fa-users"></i>
                         Users
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('app.backups.index') }}" class="{{ Request::is('app/backups') ? 'mm-active' : '' }}">
+                        <i class="fas fa-cloud"></i>
+                        Backups
                     </a>
                 </li>
             </ul>

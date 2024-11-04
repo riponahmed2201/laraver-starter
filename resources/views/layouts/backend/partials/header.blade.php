@@ -48,12 +48,13 @@
                             <div class="btn-group">
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
                                     <img width="42" class="rounded-circle"
-                                        src="{{ asset('assets/backend/images/avatars/1.jpg') }}" alt="">
+                                        src="{{ Auth::user()->getFirstMediaUrl('avatar') }}" alt="User Avatar">
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true"
                                     class="dropdown-menu dropdown-menu-right">
-                                    <a href="" tabindex="0" class="dropdown-item">Profile</a>
+                                    <a href="{{ route('app.profile.index') }}" tabindex="0"
+                                        class="dropdown-item">Profile</a>
                                     <a href="" tabindex="0" class="dropdown-item">Changes Password</a>
                                     <a href="" tabindex="0" class="dropdown-item">Settings</a>
                                     <div tabindex="-1" class="dropdown-divider"></div>
@@ -71,7 +72,7 @@
                                 {{ Auth::user()->name }}
                             </div>
                             <div class="widget-subheading">
-                               Role: {{ Auth::user()->role->name }}
+                                Role: {{ Auth::user()->role->name }}
                             </div>
                         </div>
                     </div>

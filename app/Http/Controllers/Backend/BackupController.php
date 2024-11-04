@@ -136,4 +136,15 @@ class BackupController extends Controller
 
         return back();
     }
+
+    public function clean()
+    {
+        Gate::authorize('app.backups.destroy');
+
+        Artisan::call('backup:clean');
+
+        notify()->success('All old backups deleted', 'Success');
+
+        return back();
+    }
 }

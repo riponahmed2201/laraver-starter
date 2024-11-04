@@ -45,7 +45,7 @@
             @endisset
 
             <div class="row">
-                <div class="col-md 8">
+                <div class="col-md-8">
                     <div class="main-card mb-3 card">
                         <div class="card-body">
                             <div class="card-title">User Info</div>
@@ -101,7 +101,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md 4">
+                <div class="col-md-4">
                     <div class="main-card mb-3 card">
                         <div class="card-body">
                             <div class="card-title">Select Role and Status Info</div>

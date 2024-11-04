@@ -12,14 +12,27 @@
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="fas fa-check icon-gradient bg-mean-fruit"></i>
+                    <i class="fas fa-cloud icon-gradient bg-mean-fruit"></i>
                 </div>
                 <div>Backups</div>
             </div>
             <div class="page-title-actions">
+
                 <button type="button"
                     onclick="event.preventDefault();
-                    document.getElementById('new-backup-form').submit();"
+                    document.getElementById('clean-old-backup-form').submit();"
+                    class="btn-shadow mr-3 btn btn-danger">
+                    <i class="fas fa-trash-alt"></i> Clean Old Backup
+                </button>
+
+                <form id="clean-old-backup-form" action="{{ route('app.backups.clean') }}" method="POST" style="display: none">
+                    @csrf
+                    @method('DELETE')
+                </form>
+
+                <button type="button"
+                    onclick="event.preventDefault();
+                document.getElementById('new-backup-form').submit();"
                     class="btn-shadow mr-3 btn btn-primary">
                     <i class="fas fa-plus-circle"></i> Create New Backup
                 </button>
