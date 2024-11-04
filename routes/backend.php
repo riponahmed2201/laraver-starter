@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\BackupController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\RoleController;
@@ -29,3 +30,6 @@ Route::delete('backups', [BackupController::class, 'clean'])->name('backups.clea
 
 //Pages
 Route::resource('pages', PageController::class);
+
+//Menu
+Route::resource('menus', MenuController::class)->except(['show']);

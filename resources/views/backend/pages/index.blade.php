@@ -48,7 +48,7 @@
                                         <td>{{ $page->title }}</td>
                                         <td class="text-center">
                                             <a target="_blank"
-                                                href="{{ route('page', $slug->slug) }}">{{ $page->slug }}</a>
+                                                href="{{ route('page', $page->slug) }}">{{ $page->slug }}</a>
                                         </td>
                                         <td class="text-center">
                                             @if ($page->status)

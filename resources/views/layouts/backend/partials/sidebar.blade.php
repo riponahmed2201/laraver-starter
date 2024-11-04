@@ -65,6 +65,12 @@
                         Pages
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('app.menus.index') }}" class="{{ Request::is('app/menus') ? 'mm-active' : '' }}">
+                        <i class="fas fa-bars"></i>
+                        Menus
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
