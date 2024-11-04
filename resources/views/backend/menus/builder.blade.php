@@ -43,7 +43,27 @@
                         <ol>
                             @forelse ($menu->menuItems as $item)
                                 <li>
-                                    <span>{{ $menu->title }}</span>
+                                    @if ($item->type == 'divider')
+                                        <strong>{{ $item->divider_title }}</strong>
+                                    @else
+                                        <span>{{ $item->title }}</span>
+                                    @endif
+
+                                    <a href="{{ route('app.menus.item.edit', ['id' => $menu->id, 'itemId' => $item->id]) }}"
+                                        class="btn btn-info btn-sm">
+                                        <i class="fas fa-edit"></i> <span>Edit</span> </a>
+
+                                    <button type="button" class="btn btn-danger btn-sm"
+                                        onclick="deleteData({{ $item->id }})">
+                                        <i class="fas fa-trash"></i> <span>Delete</span> </button>
+
+                                    <form id="delete-form-{{ $menu->id }}" method="POST"
+                                        action="{{ route('app.menus.item.destroy', ['id' => $menu->id, 'itemId' => $item->id]) }}"
+                                        style="display: none">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+
                                 </li>
                             @empty
                                 <div class="text-center">

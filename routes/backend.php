@@ -40,4 +40,10 @@ Route::group(['as' => 'menus.', 'prefix' => 'menus/{id}'], function () {
     Route::get('builder', [MenuBuilderController::class, 'index'])->name('builder');
 
     Route::get('item/create', [MenuBuilderController::class, 'itemCreate'])->name('item.create');
+    Route::post('item/store', [MenuBuilderController::class, 'itemStore'])->name('item.store');
+
+    Route::get('item/{itemId}/edit', [MenuBuilderController::class, 'itemEdit'])->name('item.edit');
+    Route::put('item/{itemId}/update', [MenuBuilderController::class, 'itemUpdate'])->name('item.update');
+
+    Route::delete('item/{itemId}/destroy', [MenuBuilderController::class, 'itemDestroy'])->name('item.destroy');
 });
