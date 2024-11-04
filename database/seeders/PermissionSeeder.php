@@ -23,7 +23,7 @@ class PermissionSeeder extends Seeder
             'slug' => 'app.dashboard',
         ]);
 
-         //Role Module
+        //Role Module
         $moduleAppRole = Module::updateOrCreate(['name' => 'Role Management']);
 
         Permission::updateOrCreate([
@@ -47,7 +47,7 @@ class PermissionSeeder extends Seeder
             'slug' => 'app.roles.destroy',
         ]);
 
-         //User Module
+        //User Module
         $moduleAppUser = Module::updateOrCreate(['name' => 'User Management']);
 
         Permission::updateOrCreate([
@@ -71,28 +71,52 @@ class PermissionSeeder extends Seeder
             'slug' => 'app.users.destroy',
         ]);
 
-         //Backups Module
-         $moduleAppBackups = Module::updateOrCreate(['name' => 'Backups']);
+        //Backups Module
+        $moduleAppBackups = Module::updateOrCreate(['name' => 'Backups']);
 
-         Permission::updateOrCreate([
-             'module_id' => $moduleAppBackups->id,
-             'name' => 'Access Backup',
-             'slug' => 'app.backups.index',
-         ]);
-         Permission::updateOrCreate([
-             'module_id' => $moduleAppBackups->id,
-             'name' => 'Create Backup',
-             'slug' => 'app.backups.create',
-         ]);
-         Permission::updateOrCreate([
-             'module_id' => $moduleAppBackups->id,
-             'name' => 'Douwnload Backup',
-             'slug' => 'app.backups.download',
-         ]);
-         Permission::updateOrCreate([
-             'module_id' => $moduleAppBackups->id,
-             'name' => 'Delete Backup',
-             'slug' => 'app.backups.destroy',
-         ]);
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppBackups->id,
+            'name' => 'Access Backup',
+            'slug' => 'app.backups.index',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppBackups->id,
+            'name' => 'Create Backup',
+            'slug' => 'app.backups.create',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppBackups->id,
+            'name' => 'Douwnload Backup',
+            'slug' => 'app.backups.download',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppBackups->id,
+            'name' => 'Delete Backup',
+            'slug' => 'app.backups.destroy',
+        ]);
+
+        //Pages Module
+        $moduleAppPage = Module::updateOrCreate(['name' => 'Page']);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppPage->id,
+            'name' => 'Access Pages',
+            'slug' => 'app.pages.index',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppPage->id,
+            'name' => 'Create Page',
+            'slug' => 'app.pages.create',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppPage->id,
+            'name' => 'Edit Page',
+            'slug' => 'app.pages.edit',
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppPage->id,
+            'name' => 'Delete Page',
+            'slug' => 'app.pages.destroy',
+        ]);
     }
 }

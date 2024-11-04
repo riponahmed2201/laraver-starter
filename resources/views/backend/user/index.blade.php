@@ -14,7 +14,7 @@
                 <div class="page-title-icon">
                     <i class="fas fa-users icon-gradient bg-mean-fruit"></i>
                 </div>
-                <div>Users List</div>
+                <div>Users</div>
             </div>
             <div class="page-title-actions">
                 <a href="{{ route('app.users.create') }}" data-toggle="tooltip" title="Create user" data-placement="bottom"

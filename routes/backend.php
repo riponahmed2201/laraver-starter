@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\BackupController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
@@ -25,3 +26,6 @@ Route::put('profile/secuirity', [ProfileController::class, 'updatePassword'])->n
 Route::resource('backups', BackupController::class)->only(['index', 'store', 'destroy']);
 Route::get('backups/{file_name}', [BackupController::class, 'download'])->name('backups.download');
 Route::delete('backups', [BackupController::class, 'clean'])->name('backups.clean');
+
+//Pages
+Route::resource('pages', PageController::class);

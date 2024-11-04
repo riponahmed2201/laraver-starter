@@ -53,9 +53,16 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('app.backups.index') }}" class="{{ Request::is('app/backups') ? 'mm-active' : '' }}">
+                    <a href="{{ route('app.backups.index') }}"
+                        class="{{ Request::is('app/backups') ? 'mm-active' : '' }}">
                         <i class="fas fa-cloud"></i>
                         Backups
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('app.pages.index') }}" class="{{ Request::is('app/pages') ? 'mm-active' : '' }}">
+                        <i class="fas fa-newspaper"></i>
+                        Pages
                     </a>
                 </li>
             </ul>

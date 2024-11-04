@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title', 'Roles List')
+@section('title', 'Pages List')
 
 @push('css')
     <!-- Datatables -->
@@ -12,14 +12,14 @@
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="fas fa-check icon-gradient bg-mean-fruit"></i>
+                    <i class="fas fa-users icon-gradient bg-mean-fruit"></i>
                 </div>
-                <div>Roles</div>
+                <div>Pages</div>
             </div>
             <div class="page-title-actions">
-                <a href="{{ route('app.roles.create') }}" data-toggle="tooltip" title="Create Role" data-placement="bottom"
+                <a href="{{ route('app.pages.create') }}" data-toggle="tooltip" title="Create page" data-placement="bottom"
                     class="btn-shadow mr-3 btn btn-primary">
-                    <i class="fas fa-plus-circle"></i> Create Role
+                    <i class="fas fa-plus-circle"></i> Create Page
                 </a>
             </div>
         </div>
@@ -34,41 +34,42 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">#</th>
-                                    <th>Name</th>
-                                    <th class="text-center">Permissions</th>
-                                    <th class="text-center">Updated At</th>
+                                    <th>Title</th>
+                                    <th class="text-center">URL</th>
+                                    <th class="text-center">Status</th>
+                                    <th class="text-center">Last Modified</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($roles as $role)
+                                @foreach ($pages as $page)
                                     <tr>
                                         <td class="text-center text-muted">#{{ $loop->iteration }}</td>
-                                        <td class="text-center">{{ $role->name }}</td>
+                                        <td>{{ $page->title }}</td>
                                         <td class="text-center">
-                                            @if ($role->permissions->count() > 0)
-                                                <span class="badge badge-info">{{ $role->permissions->count() }}</span>
+                                            <a href="">{{ $page->slug }}</a>
+                                        </td>
+                                        <td class="text-center">
+                                            @if ($page->status)
+                                                <span class="badge badge-info">Active</span>
                                             @else
-                                                <span class="badge badge-danger">No permission found :( </span>
+                                                <span class="badge badge-danger">Deactive</span>
                                             @endif
                                         </td>
-                                        <td class="text-center">{{ $role->updated_at->diffForHumans() }}</td>
+                                        <td class="text-center">{{ $page->updated_at->diffForHumans() }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('app.roles.edit', $role->id) }}" class="btn btn-info btn-sm">
+                                            <a href="{{ route('app.pages.edit', $page->id) }}" class="btn btn-info btn-sm">
                                                 <i class="fas fa-edit"></i> <span>Edit</span> </a>
 
-                                            @if ($role->deletable)
-                                                <button type="button" class="btn btn-danger btn-sm"
-                                                    onclick="deleteData({{ $role->id }})">
-                                                    <i class="fas fa-trash"></i> <span>Delete</span> </button>
+                                            <button type="button" class="btn btn-danger btn-sm"
+                                                onclick="deleteData({{ $page->id }})">
+                                                <i class="fas fa-trash"></i> <span>Delete</span> </button>
 
-                                                <form id="delete-form-{{ $role->id }}" method="POST"
-                                                    action="{{ route('app.roles.destroy', $role->id) }}"
-                                                    style="display: none">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
-                                            @endif
+                                            <form id="delete-form-{{ $page->id }}" method="POST"
+                                                action="{{ route('app.pages.destroy', $page->id) }}" style="display: none">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -88,7 +89,6 @@
     <script>
         $(document).ready(function() {
             $("#data-table").DataTable();
-            // new DataTable('#data-table');
         });
     </script>
 @endpush
