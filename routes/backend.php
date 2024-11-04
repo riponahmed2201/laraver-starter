@@ -17,6 +17,10 @@ Route::resource('users', UserController::class);
 Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
 Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
 
+//Secuirity
+Route::get('profile/secuirity', [ProfileController::class, 'changePassword'])->name('profile.password.change');
+Route::put('profile/secuirity', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
+
 //Backups
 Route::resource('backups', BackupController::class)->only(['index', 'store', 'destroy']);
 Route::get('backups/{file_name}', [BackupController::class, 'download'])->name('backups.download');
