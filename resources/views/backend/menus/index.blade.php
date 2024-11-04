@@ -47,7 +47,7 @@
                                         <td class="text-center">{{ $menu->description }}</td>
                                         <td class="text-center">
 
-                                            <a href="{{ route('app.menus.edit', $menu->id) }}"
+                                            <a href="{{ route('app.menus.builder', $menu->id) }}"
                                                 class="btn btn-success btn-sm">
                                                 <i class="fas fa-list-ul"></i> <span>Builder</span> </a>
 

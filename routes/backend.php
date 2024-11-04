@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\BackupController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\MenuBuilderController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\ProfileController;
@@ -33,3 +34,10 @@ Route::resource('pages', PageController::class);
 
 //Menu
 Route::resource('menus', MenuController::class)->except(['show']);
+
+//Menu Builder
+Route::group(['as' => 'menus.', 'prefix' => 'menus/{id}'], function () {
+    Route::get('builder', [MenuBuilderController::class, 'index'])->name('builder');
+
+    Route::get('item/create', [MenuBuilderController::class, 'itemCreate'])->name('item.create');
+});
