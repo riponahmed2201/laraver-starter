@@ -12,7 +12,7 @@
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="fas fa-users icon-gradient bg-mean-fruit"></i>
+                    <i class="fas fa-newspaper icon-gradient bg-mean-fruit"></i>
                 </div>
                 <div>Pages</div>
             </div>
@@ -47,7 +47,8 @@
                                         <td class="text-center text-muted">#{{ $loop->iteration }}</td>
                                         <td>{{ $page->title }}</td>
                                         <td class="text-center">
-                                            <a href="">{{ $page->slug }}</a>
+                                            <a target="_blank"
+                                                href="{{ route('page', $slug->slug) }}">{{ $page->slug }}</a>
                                         </td>
                                         <td class="text-center">
                                             @if ($page->status)

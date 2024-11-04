@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
@@ -26,7 +27,9 @@ class PageController extends Controller
      */
     public function create()
     {
-        //
+        Gate::authorize('app.pages.create');
+
+        return view('backend.pages.form');
     }
 
     /**
@@ -34,7 +37,33 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Gate::authorize('app.pages.create');
+
+        $request->validate([
+            'title' => 'required|string|unique:pages',
+            'body' => 'required|string',
+            'image' => 'nullable|image'
+        ]);
+
+        //Store data
+        $page = Page::create([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'excerpt' => $request->excerpt,
+            'body' => $request->body,
+            'meta_description' => $request->meta_description,
+            'meta_keywords' => $request->meta_keywords,
+            'status' => $request->filled('status')
+        ]);
+
+        //Upload image
+        if ($request->hasFile('image')) {
+            $page->addMedia($request->image)->toMediaCollection('image');
+        }
+
+        notify()->success('Page created successfull.', 'success');
+
+        return to_route('app.pages.index');
     }
 
     /**
@@ -50,7 +79,8 @@ class PageController extends Controller
      */
     public function edit(Page $page)
     {
-        //
+        Gate::authorize('app.pages.edit');
+        return view('backend.pages.form', compact('page'));
     }
 
     /**
@@ -58,7 +88,33 @@ class PageController extends Controller
      */
     public function update(Request $request, Page $page)
     {
-        //
+        Gate::authorize('app.pages.edit');
+
+        $request->validate([
+            'title' => 'required|string|unique:pages,title,' . $page->id,
+            'body' => 'required|string',
+            'image' => 'nullable|image'
+        ]);
+
+        //Update data
+        $page->update([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'excerpt' => $request->excerpt,
+            'body' => $request->body,
+            'meta_description' => $request->meta_description,
+            'meta_keywords' => $request->meta_keywords,
+            'status' => $request->filled('status')
+        ]);
+
+        //Upload image
+        if ($request->hasFile('image')) {
+            $page->addMedia($request->image)->toMediaCollection('image');
+        }
+
+        notify()->success('Page updated successfull.', 'success');
+
+        return back();
     }
 
     /**
@@ -66,6 +122,12 @@ class PageController extends Controller
      */
     public function destroy(Page $page)
     {
-        //
+        Gate::authorize('app.pages.destroy');
+
+        $page->delete();
+
+        notify()->success('Page deleted successfull.', 'Success');
+
+        return back();
     }
 }
