@@ -22,8 +22,7 @@
                         class="{{ Request::is(ltrim($item->url, '/') . '*') ? 'mm-active' : '' }}">
                         <i class="{{ $item->icon_class }}"></i>
                         {{ $item->title }}
-                        <i class="metismenu-state-icon fas fa-chevron-down"></i>
-                        {{-- <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i> --}}
+                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
                         @foreach ($item->childs as $child)

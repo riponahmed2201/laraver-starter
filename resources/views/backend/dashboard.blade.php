@@ -1,12 +1,13 @@
 @extends('layouts.backend.app')
 
+@section('title', 'Admin Dashboard')
+
 @section('content')
     <div class="app-page-title">
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="fas fa-dashboard icon-gradient bg-mean-fruit">
-                    </i>
+                    <i class="pe-7s-car icon-gradient bg-mean-fruit"></i>
                 </div>
                 <div>
                     @role('admin')
