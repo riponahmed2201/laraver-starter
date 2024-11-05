@@ -12,14 +12,15 @@
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="fas fa-bars icon-gradient bg-mean-fruit"></i>
+                    <i class="pe-7s-menu icon-gradient bg-mean-fruit">
+                    </i>
                 </div>
                 <div>Menus</div>
             </div>
             <div class="page-title-actions">
                 <a href="{{ route('app.menus.create') }}" data-toggle="tooltip" title="Create menu" data-placement="bottom"
                     class="btn-shadow mr-3 btn btn-primary">
-                    <i class="fas fa-plus-circle"></i> Create Menu
+                    <i class="fas fa-plus-circle fa-w-20"></i> Create Menu
                 </a>
             </div>
         </div>

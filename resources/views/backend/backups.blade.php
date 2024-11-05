@@ -12,7 +12,8 @@
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="fas fa-cloud icon-gradient bg-mean-fruit"></i>
+                    <i class="pe-7s-cloud icon-gradient bg-mean-fruit">
+                    </i>
                 </div>
                 <div>Backups</div>
             </div>
@@ -25,7 +26,8 @@
                     <i class="fas fa-trash-alt"></i> Clean Old Backup
                 </button>
 
-                <form id="clean-old-backup-form" action="{{ route('app.backups.clean') }}" method="POST" style="display: none">
+                <form id="clean-old-backup-form" action="{{ route('app.backups.clean') }}" method="POST"
+                    style="display: none">
                     @csrf
                     @method('DELETE')
                 </form>

@@ -19,15 +19,16 @@
     <div class="page-title-wrapper">
         <div class="page-title-heading">
             <div class="page-title-icon">
-                <i class="fas fa-newspaper icon-gradient bg-mean-fruit"></i>
+                <i class="pe-7s-news-paper icon-gradient bg-mean-fruit">
+                </i>
             </div>
             <div>Page {{ isset($page) ? 'Edit' : 'Create' }}</div>
         </div>
         <div class="page-title-actions">
             <a href="{{ route('app.pages.index') }}" data-toggle="tooltip" title="Page List"
                 class="btn-shadow mr-3 btn btn-danger">
-                <i class="fas fa-arrow-circle-left"></i>
-                Page List
+                <i class="fas fa-arrow-circle-left fa-w-20"></i>
+                Back to list
             </a>
         </div>
     </div>

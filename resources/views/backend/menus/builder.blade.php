@@ -52,7 +52,7 @@
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="fas fa-bars icon-gradient bg-mean-fruit"></i>
+                    <i class="pe-7s-menu icon-gradient bg-mean-fruit"></i>
                 </div>
                 <div>Menu Builder ({{ $menu->name }})</div>
             </div>
@@ -104,7 +104,7 @@
                                             @method('DELETE')
                                         </form>
                                     </div>
-                                    
+
                                     <div class="dd-handle">
                                         @if ($item->type == 'divider')
                                             <strong>Divider: {{ $item->divider_title }}</strong>

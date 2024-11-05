@@ -11,14 +11,15 @@
     <div class="page-title-wrapper">
         <div class="page-title-heading">
             <div class="page-title-icon">
-                <i class="fas fa-bars icon-gradient bg-mean-fruit"></i>
+                <i class="pe-7s-menu icon-gradient bg-mean-fruit">
+                </i>
             </div>
             <div>Menu {{ isset($menu) ? 'Edit' : 'Create' }}</div>
         </div>
         <div class="page-title-actions">
             <a href="{{ route('app.menus.index') }}" data-toggle="tooltip" title="Menu List"
                 class="btn-shadow mr-3 btn btn-danger">
-                <i class="fas fa-arrow-circle-left"></i>
+                <i class="fas fa-arrow-circle-left fa-w-20"></i>
                Back to list
             </a>
         </div>

@@ -19,15 +19,16 @@
     <div class="page-title-wrapper">
         <div class="page-title-heading">
             <div class="page-title-icon">
-                <i class="fas fa-user icon-gradient bg-mean-fruit"></i>
+                <i class="pe-7s-users icon-gradient bg-mean-fruit">
+                </i>
             </div>
             <div>User {{ isset($user) ? 'Edit' : 'Create' }}</div>
         </div>
         <div class="page-title-actions">
             <a href="{{ route('app.users.index') }}" data-toggle="tooltip" title="User List"
                 class="btn-shadow mr-3 btn btn-danger">
-                <i class="fas fa-arrow-circle-left"></i>
-                User List
+                <i class="fas fa-arrow-circle-left fa-w-20"></i>
+                Back to list
             </a>
         </div>
     </div>

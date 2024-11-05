@@ -12,14 +12,16 @@
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="fas fa-users icon-gradient bg-mean-fruit"></i>
+                    <i class="pe-7s-users icon-gradient bg-mean-fruit">
+                    </i>
                 </div>
                 <div>Users</div>
             </div>
             <div class="page-title-actions">
                 <a href="{{ route('app.users.create') }}" data-toggle="tooltip" title="Create user" data-placement="bottom"
                     class="btn-shadow mr-3 btn btn-primary">
-                    <i class="fas fa-plus-circle"></i> Create User
+                    <i class="fas fa-plus-circle fa-w-20"></i>
+                    Create User
                 </a>
             </div>
         </div>
@@ -51,7 +53,7 @@
                                                     <div class="widget-content-left mr-3">
                                                         <div class="widget-content-left">
                                                             <img width="40" class="rounded-circle"
-                                                                src="{{ $user->getFirstMediaUrl('avatar') != null ? $user->getFirstMediaUrl('avatar')  : config('app.placeholder') . '160.png' }}"
+                                                                src="{{ $user->getFirstMediaUrl('avatar') != null ? $user->getFirstMediaUrl('avatar') : config('app.placeholder') . '160.png' }}"
                                                                 alt="User Avatar">
                                                         </div>
                                                     </div>
@@ -85,15 +87,18 @@
                                             <a href="{{ route('app.users.edit', $user->id) }}" class="btn btn-info btn-sm">
                                                 <i class="fas fa-edit"></i> <span>Edit</span> </a>
 
-                                            <button type="button" class="btn btn-danger btn-sm"
-                                                onclick="deleteData({{ $user->id }})">
-                                                <i class="fas fa-trash"></i> <span>Delete</span> </button>
+                                            @if ($user->deletable)
+                                                <button type="button" class="btn btn-danger btn-sm"
+                                                    onclick="deleteData({{ $user->id }})">
+                                                    <i class="fas fa-trash"></i> <span>Delete</span> </button>
 
-                                            <form id="delete-form-{{ $user->id }}" method="POST"
-                                                action="{{ route('app.users.destroy', $user->id) }}" style="display: none">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
+                                                <form id="delete-form-{{ $user->id }}" method="POST"
+                                                    action="{{ route('app.users.destroy', $user->id) }}"
+                                                    style="display: none">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

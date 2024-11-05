@@ -17,9 +17,9 @@
         </div>
         <div class="page-title-actions">
             <a href="{{ route('app.roles.index') }}" data-toggle="tooltip" title="Role List" data-placement="bottom"
-                class="btn-shadow mr-3 btn btn-primary">
-                <i class="fas fa-arrow-circle-left"></i>
-                Role List
+                class="btn-shadow mr-3 btn btn-danger">
+                <i class="fas fa-arrow-circle-left fa-w-20"></i>
+                Back to list
             </a>
         </div>
     </div>

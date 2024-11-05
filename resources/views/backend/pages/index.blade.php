@@ -12,14 +12,15 @@
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="fas fa-newspaper icon-gradient bg-mean-fruit"></i>
+                    <i class="pe-7s-news-paper icon-gradient bg-mean-fruit">
+                    </i>
                 </div>
                 <div>Pages</div>
             </div>
             <div class="page-title-actions">
                 <a href="{{ route('app.pages.create') }}" data-toggle="tooltip" title="Create page" data-placement="bottom"
                     class="btn-shadow mr-3 btn btn-primary">
-                    <i class="fas fa-plus-circle"></i> Create Page
+                    <i class="fas fa-plus-circle fa-w-20"></i> Create Page
                 </a>
             </div>
         </div>

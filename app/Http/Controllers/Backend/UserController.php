@@ -123,9 +123,13 @@ class UserController extends Controller
     {
         Gate::authorize('app.users.destroy');
 
-        $user->delete();
+        if ($user->deletable) {
+            $user->delete();
+            notify()->success('User deleted successfull.', 'Success');
+        } else {
+            notify()->error("You can\'t delete system user", "Error");
+        }
 
-        notify()->success('User deleted successfull.', 'Success');
         return back();
     }
 }
