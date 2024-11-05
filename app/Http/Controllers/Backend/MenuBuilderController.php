@@ -86,7 +86,7 @@ class MenuBuilderController extends Controller
 
         $menu = Menu::findOrFail($menuId);
 
-        $menuItem = $menu->menuItems()->findOrFail($itemId);
+        $menuItem = MenuItem::where('menu_id', $menu->id)->findOrFail($itemId);
 
         return view('backend.menus.item.form', compact('menu', 'menuItem'));
     }
@@ -106,14 +106,16 @@ class MenuBuilderController extends Controller
 
         $menu = Menu::findOrFail($menuId);
 
-        $menu->menuItems()->findOrFail($itemId)->update([
-            'type' => $request->get('type'),
-            'divider_title' => $request->get('divider_title'),
-            'title' => $request->get('title'),
-            'url' => $request->get('url'),
-            'target' => $request->get('target'),
-            'icon_class' => $request->get('icon_class'),
-        ]);
+        $menuItem = MenuItem::where('menu_id', $menu->id)
+            ->findOrFail($itemId)
+            ->update([
+                'type' => $request->get('type'),
+                'divider_title' => $request->get('divider_title'),
+                'title' => $request->get('title'),
+                'url' => $request->get('url'),
+                'target' => $request->get('target'),
+                'icon_class' => $request->get('icon_class'),
+            ]);
 
         notify()->success('Menu item successfully updated.', 'Success');
 

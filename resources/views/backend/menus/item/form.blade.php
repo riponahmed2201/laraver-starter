@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="page-title-actions">
-            <a href="{{ route('app.menus.index') }}" data-toggle="tooltip" title="Menu List"
+            <a href="{{ route('app.menus.builder', $menu->id) }}" data-toggle="tooltip" title="Menu List"
                 class="btn-shadow mr-3 btn btn-danger">
                 <i class="fas fa-arrow-circle-left"></i>
                 Back to list

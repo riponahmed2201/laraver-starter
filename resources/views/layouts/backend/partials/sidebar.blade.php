@@ -32,7 +32,10 @@
     <div class="scrollbar-sidebar">
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
-                <li class="app-sidebar__heading">Dashboards</li>
+
+                <x-backend-sidebar />
+
+                {{-- <li class="app-sidebar__heading">Dashboards</li>
                 <li>
                     <a href="/app/dashboard" class="{{ Route::is('app.dashboard') ? 'mm-active' : '' }}">
                         <i class="fas fa-dashboard"></i>
@@ -70,7 +73,7 @@
                         <i class="fas fa-bars"></i>
                         Menus
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>
