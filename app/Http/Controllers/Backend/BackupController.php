@@ -69,6 +69,7 @@ class BackupController extends Controller
     public function store(Request $request)
     {
         Gate::authorize('app.backups.create');
+        
         Artisan::call('backup:run');
 
         notify()->success('Backup Created', 'Success');
