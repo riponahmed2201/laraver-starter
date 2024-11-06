@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,4 +49,12 @@ Route::group(['as' => 'menus.', 'prefix' => 'menus/{id}'], function () {
     Route::put('item/{itemId}/update', [MenuBuilderController::class, 'itemUpdate'])->name('item.update');
 
     Route::delete('item/{itemId}/destroy', [MenuBuilderController::class, 'itemDestroy'])->name('item.destroy');
+});
+
+
+//Setting
+
+Route::group(['as' => 'settings.', 'prefix'=> 'settings'], function(){
+    Route::get('general', [SettingController::class, 'general'])->name('general');
+    Route::put('general', [SettingController::class, 'generalUpdate'])->name('general.update');
 });
